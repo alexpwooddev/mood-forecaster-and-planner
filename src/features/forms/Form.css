@@ -1,0 +1,12 @@
+.form table {
+    margin: auto;
+}
+
+.form .range-labelAndInput {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.form .range-input {
+    display: inline-block;
+}

@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+.navbar {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar .calendar-button {
+    width: 3%;
+}
+
+.navbar .calendar-icon {
+    width: 100%;
+}
+
+.navbar .chevron {
+    font-family: "Material Icons";
+    font-style: normal;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "liga";
+  }
