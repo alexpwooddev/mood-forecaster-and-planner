@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
 import './index.css';
 import App from './App';
 import store from './app/store';
-import { Provider } from 'react-redux';
+import { getFormForSelectedDate } from "./features/forms/formsSlice";
+
+
+store.dispatch(getFormForSelectedDate());
 
 ReactDOM.render(
   <React.StrictMode>

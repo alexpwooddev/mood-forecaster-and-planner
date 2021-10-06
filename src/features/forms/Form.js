@@ -1,30 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addNewForm } from "./formsSlice";
 
 import "./Form.css";
 
-export const Form = (props) => {
-  const [form, setForm] = useState({
-    mood: 10,
-    energy: 10,
-    morningText: "",
-    afternoonText: "",
-    eveningText: "",
-    morningCheckbox: false,
-    afternoonCheckbox: false,
-    eveningCheckbox: false,
-  });
-  const [addRequestStatus, setAddRequestStatus] = useState("idle");
+const defaultFormValues = {
+  date: new Date().toISOString(),
+  mood: 10,
+  energy: 10,
+  morningText: "",
+  afternoonText: "",
+  eveningText: "",
+  morningCheckbox: false,
+  afternoonCheckbox: false,
+  eveningCheckbox: false,
+};
 
+export const Form = (props) => {
   const dispatch = useDispatch();
+  const selectedForm = useSelector((state) => state.forms.selectedForm);
+  const selectedFormIsEmpty = selectedForm && Object.keys(selectedForm).length === 0 && selectedForm.constructor === Object;
+
+  const [addRequestStatus, setAddRequestStatus] = useState("idle");
+  const [form, setForm] = useState(selectedFormIsEmpty === true ? defaultFormValues: selectedForm);
+
+  useEffect(() => {
+      console.log(form)
+  }, [form])
 
   const canSave =
     form["morningText"].length > 0 &&
     form["afternoonText"].length > 0 &&
     form["eveningText"].length > 0 &&
-    addRequestStatus === 'idle';
+    addRequestStatus === "idle";
 
   const handleSave = async () => {
     if (canSave) {
