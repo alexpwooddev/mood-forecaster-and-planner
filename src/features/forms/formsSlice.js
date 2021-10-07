@@ -5,7 +5,7 @@ import { getFormsFromLocalStorage, addFormToLocalStorage } from  '../../dataAcce
 
 const initialState = {
   selectedDate: new Date().toISOString(),
-  selectedForm: {},
+  selectedForm: null,
   forms: [],
   status: "idle",
   error: null,
@@ -25,6 +25,8 @@ export const getFormForSelectedDate = createAsyncThunk(
     let localForms = await getFormsFromLocalStorage();
     let selectedDate = getState().forms.selectedDate;
     let selectedDateParsed = parseISO(selectedDate);
+    //need to get all forms for selectedDate (with auto-save there could be many)
+    //then select the newest saved for
     let formForSelectedDate = localForms.find(form => parseISO(form.date).toLocaleDateString() === selectedDateParsed.toLocaleDateString());
     return formForSelectedDate;
   }

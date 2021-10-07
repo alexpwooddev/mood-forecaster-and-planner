@@ -17,17 +17,18 @@ const defaultFormValues = {
   eveningCheckbox: false,
 };
 
-export const Form = (props) => {
+export const Form = () => {
   const dispatch = useDispatch();
   const selectedForm = useSelector((state) => state.forms.selectedForm);
-  const selectedFormIsEmpty = selectedForm && Object.keys(selectedForm).length === 0 && selectedForm.constructor === Object;
 
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
-  const [form, setForm] = useState(selectedFormIsEmpty === true ? defaultFormValues: selectedForm);
+  const [form, setForm] = useState(
+    selectedForm ? selectedForm : defaultFormValues
+  );
 
-  useEffect(() => {
-      console.log(form)
-  }, [form])
+  // useEffect(() => {
+    
+  // }, []);
 
   const canSave =
     form["morningText"].length > 0 &&
@@ -101,12 +102,12 @@ export const Form = (props) => {
             <tr>
               <td>Morning</td>
               <td>
-                <input
-                  type="textarea"
+                <textarea
                   id="morningText"
                   name="morningText"
                   rows="5"
                   cols="33"
+                  value={form.morningText}
                   onChange={handleChange}
                 />
               </td>
@@ -123,12 +124,12 @@ export const Form = (props) => {
             <tr>
               <td>Afternoon</td>
               <td>
-                <input
-                  type="textarea"
+                <textarea
                   id="afternoonText"
                   name="afternoonText"
                   rows="5"
                   cols="33"
+                  value={form.afternoonText}
                   onChange={handleChange}
                 />
               </td>
@@ -145,12 +146,12 @@ export const Form = (props) => {
             <tr>
               <td>Evening</td>
               <td>
-                <input
-                  type="textarea"
+                <textarea
                   id="eveningText"
                   name="eveningText"
                   rows="5"
                   cols="33"
+                  value={form.eveningText}
                   onChange={handleChange}
                 />
               </td>
