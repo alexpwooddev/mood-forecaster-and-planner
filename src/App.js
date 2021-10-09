@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import './App.css';
 import { Form } from './features/forms/Form';
 import { Navbar } from './components/Navbar';
-// import { getFormForSelectedDate } from "./features/forms/formsSlice";
-// import store from './app/store';
 
 // On initial load: always show current date
 // Current date COULD have no form values OR have values already
@@ -14,8 +12,6 @@ import { Navbar } from './components/Navbar';
 // whenever we navigate to a form, it needs to know its date (from: chevrons/today/picker), i.e. we need selectedDate
 // Navigating between forms = between dates (which are basically unique keys)
 // 
-
-// store.dispatch(getFormForSelectedDate());
 
 function App() {
   const formStatus = useSelector(state => state.forms.status);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addNewForm } from "./formsSlice";
+import { saveForm } from "./formsSlice";
 
 import "./Form.css";
 
@@ -25,10 +25,9 @@ export const Form = () => {
   const [form, setForm] = useState(
     selectedForm ? selectedForm : defaultFormValues
   );
-
-  // useEffect(() => {
-    
-  // }, []);
+  useEffect(() => {
+    console.log(selectedForm);
+  }, [selectedForm]);
 
   const canSave =
     form["morningText"].length > 0 &&
@@ -40,7 +39,7 @@ export const Form = () => {
     if (canSave) {
       try {
         setAddRequestStatus("pending");
-        await dispatch(addNewForm(form));
+        await dispatch(saveForm(form));
       } catch (err) {
         console.error("Failed to save the form: ", err);
       } finally {

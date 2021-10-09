@@ -5,10 +5,10 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import store from './app/store';
-import { getFormForSelectedDate } from "./features/forms/formsSlice";
+import { getStoredFormForInitialRender } from "./features/forms/formsSlice";
 
 
-store.dispatch(getFormForSelectedDate());
+store.dispatch(getStoredFormForInitialRender());
 
 ReactDOM.render(
   <React.StrictMode>
