@@ -69,6 +69,7 @@ export const Form = () => {
               name="mood"
               min="1"
               max="10"
+              value={form.mood}
               onChange={handleChange}
             />
             <span>10</span>
@@ -84,6 +85,7 @@ export const Form = () => {
               name="energy"
               min="1"
               max="10"
+              value={form.energy}
               onChange={handleChange}
             />
             <span>10</span>
