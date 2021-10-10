@@ -6,9 +6,21 @@ import {
   addFormToLocalStorage,
 } from "../../dataAccess/dataHelper";
 
+const defaultFormValues = {
+  date: new Date().toISOString(),
+  mood: 10,
+  energy: 10,
+  morningText: "",
+  afternoonText: "",
+  eveningText: "",
+  morningCheckbox: false,
+  afternoonCheckbox: false,
+  eveningCheckbox: false,
+};
+
 const initialState = {
   selectedDate: new Date().toISOString(),
-  selectedForm: null,
+  selectedForm: defaultFormValues,
   forms: [],
   status: "idle",
   error: null,
@@ -22,18 +34,11 @@ export const saveForm = createAsyncThunk(
   }
 );
 
-export const getStoredFormForInitialRender = createAsyncThunk(
-  "forms/getStoredFormForInitialRender",
+export const fetchFormsOnStart = createAsyncThunk(
+  "forms/fetchFormsOnStart",
   async (_, { getState }) => {
     let localForms = await getFormsFromLocalStorage();
-    let selectedDate = getState().forms.selectedDate;
-    let selectedDateParsed = parseISO(selectedDate);
-    let formForSelectedDate = localForms.find(
-      (form) =>
-        parseISO(form.date).toLocaleDateString() ===
-        selectedDateParsed.toLocaleDateString()
-    );
-    return formForSelectedDate;
+    return localForms;
   }
 );
 
@@ -57,7 +62,7 @@ export const formsSlice = createSlice({
       if (formForSelectedDate >= 0) {
         state.selectedForm = formForSelectedDate;
       } else {
-        state.selectedForm = null;
+        state.selectedForm = defaultFormValues;
       }
     },
     decrementDate: (state) => {
@@ -71,54 +76,40 @@ export const formsSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(getStoredFormForInitialRender.pending, (state, action) => {
+      .addCase(fetchFormsOnStart.pending, (state, action) => {
         state.status = "loading";
       })
-      .addCase(getStoredFormForInitialRender.fulfilled, (state, action) => {
+      .addCase(fetchFormsOnStart.fulfilled, (state, action) => {
         state.status = "succeeded";
-        const newForm = action.payload;
-        state.selectedForm = newForm;
+        let localForms = action.payload;
+        state.forms = localForms;
 
-        //only add to state if unique
-        //NEED TO REVIEW WHAT I'M DOING HERE AND WHY
-        let stateForms = state.forms;
-        console.log(stateForms.length);
-        if (stateForms.length === 0) {
-          state.forms.push(newForm);
-        } else {
-          let indexOfExistingFormForDate = stateForms
-            .map((stateForm) => parseISO(stateForm.date).toLocaleDateString())
-            .indexOf(parseISO(newForm.date).toLocaleDateString());
-
-          if (indexOfExistingFormForDate >= 0) {
-            stateForms[indexOfExistingFormForDate] = newForm;
-          } else {
-            stateForms.push(newForm);
-          }
-        }
+        let todayDate = new Date();
+        let formForToday = localForms.find(
+          (form) =>
+            parseISO(form.date).toLocaleDateString() ===
+            todayDate.toLocaleDateString()
+        );
+        state.selectedForm = formForToday;
       })
-      .addCase(getStoredFormForInitialRender.rejected, (state, action) => {
+      .addCase(fetchFormsOnStart.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
     builder.addCase(saveForm.fulfilled, (state, action) => {
       const newForm = action.payload;
-      //NEED TO REVIEW WHAT I'M DOING HERE AND WHY
-      //only add to state if unique
       let stateForms = state.forms;
-      console.log(stateForms.length);
-      if (stateForms.length === 0) {
-        state.forms.push(newForm);
-      } else {
-        let indexOfExistingFormForDate = stateForms
-          .map((stateForm) => parseISO(stateForm.date).toLocaleDateString())
-          .indexOf(parseISO(newForm.date).toLocaleDateString());
 
-        if (indexOfExistingFormForDate >= 0) {
-          stateForms[indexOfExistingFormForDate] = newForm;
-        } else {
-          stateForms.push(newForm);
-        }
+      let indexOfExistingFormForDate = stateForms
+        .map((stateForm) => parseISO(stateForm.date).toLocaleDateString())
+        .indexOf(parseISO(newForm.date).toLocaleDateString());
+
+      if (indexOfExistingFormForDate >= 0) {
+        //update form
+        stateForms[indexOfExistingFormForDate] = newForm;
+      } else {
+        //create form
+        stateForms.push(newForm);
       }
     });
   },

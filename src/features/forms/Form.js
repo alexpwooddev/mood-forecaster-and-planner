@@ -5,29 +5,19 @@ import { saveForm } from "./formsSlice";
 
 import "./Form.css";
 
-const defaultFormValues = {
-  date: new Date().toISOString(),
-  mood: 10,
-  energy: 10,
-  morningText: "",
-  afternoonText: "",
-  eveningText: "",
-  morningCheckbox: false,
-  afternoonCheckbox: false,
-  eveningCheckbox: false,
-};
-
 export const Form = () => {
   const dispatch = useDispatch();
   const selectedForm = useSelector((state) => state.forms.selectedForm);
 
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
   const [form, setForm] = useState(
-    selectedForm ? selectedForm : defaultFormValues
+    selectedForm
   );
+
   useEffect(() => {
     console.log(selectedForm);
-  }, [selectedForm]);
+    console.log(form);
+  }, [selectedForm, form]);
 
   const canSave =
     form["morningText"].length > 0 &&
