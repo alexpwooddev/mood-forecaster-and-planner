@@ -10,14 +10,11 @@ export const Form = () => {
   const selectedForm = useSelector((state) => state.forms.selectedForm);
 
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
-  const [form, setForm] = useState(
-    selectedForm
-  );
+  const [form, setForm] = useState(selectedForm);
 
   useEffect(() => {
-    console.log(selectedForm);
-    console.log(form);
-  }, [selectedForm, form]);
+    setForm(selectedForm);
+  }, [selectedForm]);
 
   const canSave =
     form["morningText"].length > 0 &&

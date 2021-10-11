@@ -14,7 +14,7 @@ export const Navbar = (props) => {
         } else if (e.target.classList.contains('right-chevron')) {
             dispatch(incrementDate());
         } else {
-            dispatch(setDate(new Date().toISOString()))
+            dispatch(setDate(new Date().toISOString()));
         }
     }
     

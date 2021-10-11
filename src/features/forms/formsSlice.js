@@ -6,6 +6,23 @@ import {
   addFormToLocalStorage,
 } from "../../dataAccess/dataHelper";
 
+const setSelectedForm = (state, newDate, newDateISO) => {
+  //setting selected Form for new date selection
+  const forms = state.forms;
+  let formForSelectedDate = forms.find(
+    (form) =>
+      parseISO(form.date).toLocaleDateString() ===
+      newDate.toLocaleDateString()
+  );
+  if (formForSelectedDate) {
+    state.selectedForm = formForSelectedDate;
+  } else {
+    let newForm = { ...defaultFormValues };
+    newForm.date = newDateISO;
+    state.selectedForm = newForm;
+  }
+}
+
 const defaultFormValues = {
   date: new Date().toISOString(),
   mood: 10,
@@ -26,13 +43,10 @@ const initialState = {
   error: null,
 };
 
-export const saveForm = createAsyncThunk(
-  "forms/saveForm",
-  async (newForm) => {
-    await addFormToLocalStorage(newForm);
-    return newForm;
-  }
-);
+export const saveForm = createAsyncThunk("forms/saveForm", async (newForm) => {
+  await addFormToLocalStorage(newForm);
+  return newForm;
+});
 
 export const fetchFormsOnStart = createAsyncThunk(
   "forms/fetchFormsOnStart",
@@ -52,26 +66,22 @@ export const formsSlice = createSlice({
       const newDateISO = newDate.toISOString();
       state.selectedDate = newDateISO;
 
-      //setting selected Form for new date selection
-      const forms = state.forms;
-      let formForSelectedDate = forms.find(
-        (form) =>
-          parseISO(form.date).toLocaleDateString() ===
-          newDate.toLocaleDateString()
-      );
-      if (formForSelectedDate >= 0) {
-        state.selectedForm = formForSelectedDate;
-      } else {
-        state.selectedForm = defaultFormValues;
-      }
+      setSelectedForm(state, newDate, newDateISO);
     },
     decrementDate: (state) => {
       const date = parseISO(state.selectedDate);
-      const newDate = subDays(date, 1).toISOString();
-      state.selectedDate = newDate;
+      const newDate = subDays(date, 1);
+      const newDateISO = newDate.toISOString();
+      state.selectedDate = newDateISO;
+
+      setSelectedForm(state, newDate, newDateISO);
     },
     setDate: (state, action) => {
-      state.selectedDate = action.payload;
+      const newDateISO = action.payload;
+      const newDate = parseISO(newDateISO);
+      state.selectedDate = newDateISO;
+
+      setSelectedForm(state, newDate, newDateISO);
     },
   },
   extraReducers(builder) {
@@ -90,7 +100,8 @@ export const formsSlice = createSlice({
             parseISO(form.date).toLocaleDateString() ===
             todayDate.toLocaleDateString()
         );
-        state.selectedForm = formForToday;
+
+        state.selectedForm = formForToday ? formForToday : defaultFormValues;
       })
       .addCase(fetchFormsOnStart.rejected, (state, action) => {
         state.status = "failed";
