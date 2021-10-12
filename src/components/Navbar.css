@@ -3,6 +3,7 @@
 .navbar {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .navbar .calendar-button {
