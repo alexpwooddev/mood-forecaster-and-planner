@@ -1,32 +1,102 @@
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
 .navbar {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.navbar .DayPicker-wrapper {
+  position: absolute;
+  background-color: var(--white);
+  border-radius: 10px;
+  border: 1px solid var(--purple);
+  color: var(--purple);
+}
+
+.navbar .DayPicker-NavButton {
+  color: var(--magenta);
+}
+
+.DayPicker-Weekday {
+  display: table-cell;
+  padding: 0.5em;
+  color: var(--magenta);
+  text-align: center;
+  font-size: 0.875em;
+}
+
+.DayPicker-WeekNumber {
+  display: table-cell;
+  padding: 0.5em;
+  min-width: 1em;
+  border-right: 1px solid var(--magenta);
+  color: var(--magenta);
+  vertical-align: middle;
+  text-align: right;
+  font-size: 0.75em;
+  cursor: pointer;
+}
+
+.DayPicker-TodayButton {
+  border: none;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+  color: var(--blue-steel);
+  font-size: 0.875em;
+  cursor: pointer;
+}
+
+.DayPicker-Day--today {
+  color: var(--blue-steel);
+  font-weight: 700;
+}
+
+.DayPicker-Day--outside {
+  color: var(--magenta);
+  cursor: default;
+}
+
+.DayPicker-Day--sunday:not(.DayPicker-Day--today) {
+  color: var(--magenta);
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  background-color: #4a90e2;
+  color: #f0f8ff;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
+  background-color: #51a0fa;
+}
+
+.DayPicker:not(.DayPicker--interactionDisabled)
+  .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+  background-color: #f0f8ff;
 }
 
 .navbar .calendar-button {
-    width: 3%;
+  width: 3%;
 }
 
 .navbar .calendar-icon {
-    width: 100%;
+  width: 100%;
 }
 
 .navbar .chevron {
-    font-family: "Material Icons";
-    font-style: normal;
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "liga";
-  }
+  font-family: "Material Icons";
+  font-style: normal;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga";
+}

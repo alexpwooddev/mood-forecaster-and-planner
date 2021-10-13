@@ -1,12 +1,25 @@
+.form {
+  background-color: var(--blue-steel);
+  color: var(--white);
+  width: 80%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 20px;
+}
+
 .form table {
-    margin: auto;
+  margin: auto;
+}
+
+.form fieldset {
+    border: none;
 }
 
 .form .range-labelAndInput {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .form .range-input {
-    display: inline-block;
+  display: inline-block;
 }
