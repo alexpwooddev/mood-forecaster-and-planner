@@ -5,40 +5,61 @@ import { saveForm } from "./formsSlice";
 
 import "./Form.css";
 
+const autosavingState = {
+  NOT_SAVED: 0,
+  SAVING: 1,
+  SAVED: 2,
+};
+
 export const Form = () => {
   const dispatch = useDispatch();
   const selectedForm = useSelector((state) => state.forms.selectedForm);
 
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
   const [form, setForm] = useState(selectedForm);
+  const [autoSaving, setAutoSaving] = useState(autosavingState.NOT_SAVED);
+
+  let timer;
 
   useEffect(() => {
     setForm(selectedForm);
   }, [selectedForm]);
 
-  const canSave =
-    form["morningText"].length > 0 &&
-    form["afternoonText"].length > 0 &&
-    form["eveningText"].length > 0 &&
-    addRequestStatus === "idle";
+  useEffect(() => {
+    timer = null;
+  })
+
+  // const canSave =
+  //   form["morningText"].length > 0 &&
+  //   form["afternoonText"].length > 0 &&
+  //   form["eveningText"].length > 0 &&
+  //   addRequestStatus === "idle";
 
   const handleSave = async () => {
-    if (canSave) {
-      try {
-        setAddRequestStatus("pending");
-        await dispatch(saveForm(form));
-      } catch (err) {
-        console.error("Failed to save the form: ", err);
-      } finally {
-        setAddRequestStatus("idle");
-      }
+    try {
+      setAddRequestStatus("pending");
+      await dispatch(saveForm(form));
+    } catch (err) {
+      console.error("Failed to save the form: ", err);
+    } finally {
+      setAddRequestStatus("idle");
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
+    
     const name = e.target.name;
     const value = e.target.type === "checkbox" ? !form[name] : e.target.value;
     setForm({ ...form, [name]: value });
+    setAutoSaving(autosavingState.NOT_SAVED);
+
+    timer = setTimeout(async () => {
+      setForm({ ...form, [name]: value });
+      setAutoSaving(autosavingState.NOT_SAVED);
+
+      await handleSave();
+      setAutoSaving(autosavingState.SAVED);
+    }, 1000)
   };
 
   return (
@@ -102,6 +123,7 @@ export const Form = () => {
               <td>
                 <input
                   type="checkbox"
+                  className="regular-checkbox"
                   id="morningCheckbox"
                   name="morningCheckbox"
                   checked={form.morningCheckbox}
@@ -124,6 +146,7 @@ export const Form = () => {
               <td>
                 <input
                   type="checkbox"
+                  className="regular-checkbox"
                   id="afternoonCheckbox"
                   name="afternoonCheckbox"
                   checked={form.afternoonCheckbox}
@@ -146,6 +169,7 @@ export const Form = () => {
               <td>
                 <input
                   type="checkbox"
+                  className="regular-checkbox"
                   id="eveningCheckbox"
                   name="eveningCheckbox"
                   checked={form.eveningCheckbox}
@@ -156,7 +180,7 @@ export const Form = () => {
           </tbody>
         </table>
       </fieldset>
-      <button type="button" onClick={handleSave} disabled={!canSave}>
+      <button type="button" onClick={handleSave}>
         Save Today's Info
       </button>
     </form>

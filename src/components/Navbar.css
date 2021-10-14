@@ -77,7 +77,8 @@
 }
 
 .navbar .calendar-button {
-  width: 3%;
+  width: 25px;
+  height: auto;
 }
 
 .navbar .calendar-icon {
