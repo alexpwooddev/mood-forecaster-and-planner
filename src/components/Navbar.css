@@ -12,6 +12,7 @@
   border-radius: 10px;
   border: 1px solid var(--purple);
   color: var(--purple);
+  z-index: 10;
 }
 
 .navbar .DayPicker-NavButton {
