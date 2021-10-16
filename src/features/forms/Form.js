@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Cloud from "@material-ui/icons/Cloud";
+import WbSunny from "@material-ui/icons/WbSunny";
 
 import { saveForm } from "./formsSlice";
 import { Autosave } from "../../components/Autosave";
+import { AutoSaveDisplay } from "../../components/AutosaveDisplay";
 import "./Form.css";
 
+const SavingState = Object.freeze({
+  NOT_SAVED: 0,
+  SAVING: 1,
+  SAVED: 2,
+});
 
 export const Form = () => {
   const dispatch = useDispatch();
@@ -12,37 +20,38 @@ export const Form = () => {
 
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
   const [form, setForm] = useState(selectedForm);
+  const [autoSaveState, setAutoSaveState] = useState(SavingState.NOT_SAVED);
 
   useEffect(() => {
     setForm(selectedForm);
   }, [selectedForm]);
 
-  const handleSave = async () => {
-    try {
-      setAddRequestStatus("pending");
-      await dispatch(saveForm(form));
-    } catch (err) {
-      console.error("Failed to save the form: ", err);
-    } finally {
-      setAddRequestStatus("idle");
-    }
-  };
-
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.type === "checkbox" ? !form[name] : e.target.value;
+    modifyAutoSaveState(SavingState.NOT_SAVED);
     setForm({ ...form, [name]: value });
+  };
+
+  const modifyAutoSaveState = (newState) => {
+    setAutoSaveState(newState);
   };
 
   return (
     <React.Fragment>
-      <Autosave form={form} />
+      <Autosave form={form} modifyAutoSaveState={modifyAutoSaveState} />
       <form className="form">
         <fieldset>
           <legend>Today I'm feeling...</legend>
           <div className="range-container">
-            <label htmlFor="mood">MOOD:</label>
+            <div className="label-wrapper">
+              <label htmlFor="mood">MOOD:</label>
+            </div>
             <div className="range-input">
+              <div className="weather-icons-wrapper">
+                <Cloud />
+                <WbSunny />
+              </div>
               <span>1</span>
               <input
                 type="range"
@@ -57,7 +66,9 @@ export const Form = () => {
             </div>
           </div>
           <div className="range-container">
-            <label htmlFor="energy">ENERGY:</label>
+            <div className="label-wrapper">
+              <label htmlFor="energy">ENERGY:</label>
+            </div>
             <div className="range-input">
               <span>1</span>
               <input
@@ -154,9 +165,7 @@ export const Form = () => {
             </tbody>
           </table>
         </fieldset>
-        <button type="button" onClick={handleSave}>
-          Save Today's Info
-        </button>
+        <AutoSaveDisplay saving={autoSaveState} />
       </form>
     </React.Fragment>
   );

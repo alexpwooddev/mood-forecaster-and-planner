@@ -3,7 +3,11 @@
 .navbar {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  align-items: center;
+}
+
+.navbar .buttons-container {
+  padding-right: 20px;
 }
 
 .navbar .DayPicker-wrapper {

@@ -47,7 +47,8 @@ export const Navbar = (props) => {
   };
 
   return (
-    <div className="navbar">
+    <React.Fragment>
+      <div className="navbar">
       <div className="buttons-container">
         <button className="left-chevron" onClick={handleClick}>
           <i className="chevron left-chevron">chevron_left</i>
@@ -73,5 +74,8 @@ export const Navbar = (props) => {
         {selectedDay}, {localeDateString}
       </p>
     </div>
+    <hr />
+    </React.Fragment>
+    
   );
 };
