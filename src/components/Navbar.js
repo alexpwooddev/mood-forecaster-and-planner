@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { parseISO } from "date-fns";
 import DayPicker from "react-day-picker";
+import Event from "@material-ui/icons/EventAvailableOutlined";
+
 import "react-day-picker/lib/style.css";
 
 import "./Navbar.css";
@@ -57,11 +59,7 @@ export const Navbar = (props) => {
           Today
         </button>
         <button className="calendar-button" onClick={toggleShowDayPicker}>
-          <img
-            className="calendar-icon"
-            src="icons/icons8-planner-50.png"
-            alt="calendar icon"
-          />
+          <Event />
         </button>
         {showDayPicker && (
           <DayPicker onDayClick={handleDayClick} selectedDays={pickedDate} />

@@ -32,6 +32,7 @@ input[type="range"] {
 
 textarea {
   border-radius: 4px;
+  color: var(--magenta);
 }
 
 .regular-checkbox {

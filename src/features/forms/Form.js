@@ -42,7 +42,7 @@ export const Form = () => {
       <Autosave form={form} modifyAutoSaveState={modifyAutoSaveState} />
       <form className="form">
         <fieldset>
-          <legend>Today I'm feeling...</legend>
+          <legend>I'm feeling...</legend>
           <div className="range-container">
             <div className="label-wrapper">
               <label htmlFor="mood">MOOD:</label>

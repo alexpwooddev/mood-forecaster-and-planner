@@ -10,6 +10,16 @@
   padding-right: 20px;
 }
 
+.navbar p {
+  width: 30%;
+}
+
+.navbar button {
+  border-radius: 4px;
+}
+
+.navbar .material-icons.md-18 { font-size: 18px; }
+
 .navbar .DayPicker-wrapper {
   position: absolute;
   background-color: var(--white);
@@ -82,7 +92,7 @@
 }
 
 .navbar .calendar-button {
-  width: 25px;
+  /* width: 25px; */
   height: auto;
 }
 
