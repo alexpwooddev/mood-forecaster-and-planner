@@ -42,7 +42,7 @@ export const Form = () => {
       <Autosave form={form} modifyAutoSaveState={modifyAutoSaveState} />
       <form className="form">
         <fieldset>
-          <legend>I'm feeling...</legend>
+          <legend>Wellbeing Forecast: I'm feeling...</legend>
           <div className="range-container">
             <div className="label-wrapper">
               <label htmlFor="mood">MOOD:</label>
@@ -52,7 +52,7 @@ export const Form = () => {
                 <Cloud />
                 <WbSunny />
               </div>
-              <span>1</span>
+              <span className="range-number-label">1</span>
               <input
                 type="range"
                 id="mood"
@@ -62,7 +62,7 @@ export const Form = () => {
                 value={form.mood}
                 onChange={handleChange}
               />
-              <span>10</span>
+              <span className="range-number-label">10</span>
             </div>
           </div>
           <div className="range-container">
@@ -70,7 +70,7 @@ export const Form = () => {
               <label htmlFor="energy">ENERGY:</label>
             </div>
             <div className="range-input">
-              <span>1</span>
+              <span className="range-number-label">1</span>
               <input
                 type="range"
                 id="energy"
@@ -80,7 +80,7 @@ export const Form = () => {
                 value={form.energy}
                 onChange={handleChange}
               />
-              <span>10</span>
+              <span className="range-number-label">10</span>
             </div>
           </div>
         </fieldset>

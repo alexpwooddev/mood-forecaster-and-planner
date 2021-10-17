@@ -14,8 +14,24 @@
   width: 30%;
 }
 
-.navbar button {
-  border-radius: 4px;
+.navbar .MuiIconButton-root {
+  flex: 0 0 auto;
+  color: rgba(0, 0, 0, 0.54);
+  padding: 2px;
+  overflow: visible;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 10%;
+  margin: 0 1px;
+  color: white;
+  font-size: 16px;
+  background-color: var(--magenta);
+  height: 28px;
+}
+
+.navbar .MuiIconButton-root:hover {
+  background-color: var(--magenta-light);
 }
 
 .navbar .material-icons.md-18 { font-size: 18px; }

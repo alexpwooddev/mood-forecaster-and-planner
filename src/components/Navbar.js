@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { parseISO } from "date-fns";
 import DayPicker from "react-day-picker";
 import Event from "@material-ui/icons/EventAvailableOutlined";
+import IconButton from "@material-ui/core/IconButton";
 
 import "react-day-picker/lib/style.css";
 
@@ -52,21 +53,21 @@ export const Navbar = (props) => {
     <React.Fragment>
       <div className="navbar">
       <div className="buttons-container">
-        <button className="left-chevron" onClick={handleClick}>
+        <IconButton className="left-chevron" onClick={handleClick}>
           <i className="chevron left-chevron">chevron_left</i>
-        </button>
-        <button className="todayButton" onClick={handleClick}>
+        </IconButton>
+        <IconButton className="todayButton" onClick={handleClick}>
           Today
-        </button>
-        <button className="calendar-button" onClick={toggleShowDayPicker}>
+        </IconButton>
+        <IconButton className="calendar-button" onClick={toggleShowDayPicker}>
           <Event />
-        </button>
+        </IconButton>
         {showDayPicker && (
           <DayPicker onDayClick={handleDayClick} selectedDays={pickedDate} />
         )}
-        <button className="right-chevron" onClick={handleClick}>
+        <IconButton className="right-chevron" onClick={handleClick}>
           <i className="chevron right-chevron">chevron_right</i>
-        </button>
+        </IconButton>
       </div>
       <p>
         {selectedDay}, {localeDateString}
