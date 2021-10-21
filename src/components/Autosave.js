@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useCallback, useEffect } from "react";
+import PropTypes from 'prop-types';
 
 import { saveForm } from "../features/forms/formsSlice";
 import { debounce } from '../utils/debounce';
@@ -39,3 +40,8 @@ export const Autosave = ({ form, modifyAutoSaveState }) => {
 
   return null;
 };
+
+Autosave.propTypes = {
+  form: PropTypes.object.isRequired,
+  modifyAutoSaveState: PropTypes.func.isRequired
+}

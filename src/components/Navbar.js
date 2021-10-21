@@ -14,7 +14,7 @@ import {
   setDate,
 } from "../features/forms/formsSlice";
 
-export const Navbar = (props) => {
+export const Navbar = () => {
   const selectedDate = useSelector((state) =>
     parseISO(state.forms.selectedDate)
   );

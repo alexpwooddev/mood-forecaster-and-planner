@@ -1,5 +1,6 @@
 import CachedIcon from "@material-ui/icons/Cached";
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import PropTypes from 'prop-types';
 
 const SavingState = Object.freeze({
   NOT_SAVED: 0,
@@ -39,3 +40,7 @@ export const AutoSaveDisplay = ({ saving }) => {
   }
   return <div className="auto-save-display">{display}</div>;
 };
+
+AutoSaveDisplay.propTypes = {
+  saving: PropTypes.number.isRequired
+}

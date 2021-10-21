@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Cloud from "@material-ui/icons/Cloud";
 import WbSunny from "@material-ui/icons/WbSunny";
 
-import { saveForm } from "./formsSlice";
 import { Autosave } from "../../components/Autosave";
 import { AutoSaveDisplay } from "../../components/AutosaveDisplay";
 import "./Form.css";
@@ -15,10 +14,7 @@ const SavingState = Object.freeze({
 });
 
 export const Form = () => {
-  const dispatch = useDispatch();
   const selectedForm = useSelector((state) => state.forms.selectedForm);
-
-  const [addRequestStatus, setAddRequestStatus] = useState("idle");
   const [form, setForm] = useState(selectedForm);
   const [autoSaveState, setAutoSaveState] = useState(SavingState.NOT_SAVED);
 
@@ -42,7 +38,7 @@ export const Form = () => {
       <Autosave form={form} modifyAutoSaveState={modifyAutoSaveState} />
       <form className="form">
         <fieldset>
-          <legend>Wellbeing Forecast: I'm feeling...</legend>
+          <legend><span className="bold-span">Wellbeing Forecast:</span></legend>
           <div className="range-container">
             <div className="label-wrapper">
               <label htmlFor="mood">MOOD:</label>

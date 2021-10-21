@@ -1,9 +1,19 @@
+.form {
+  padding: 20px;
+}
+
 .form table {
   margin: auto;
 }
 
 .form fieldset {
   border: none;
+  padding: 0;
+  margin-bottom: var(--margin-m);
+}
+
+.form legend {
+  margin-bottom: var(--margin-s);
 }
 
 .form .label-wrapper {

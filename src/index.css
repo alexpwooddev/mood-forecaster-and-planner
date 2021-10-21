@@ -4,6 +4,8 @@
   --magenta-light: #bd36af;
   --blue-steel: #1e78bb;
   --white: #ffff;
+  --margin-s: 10px;
+  --margin-m: 20px;
 }
 
 body {
