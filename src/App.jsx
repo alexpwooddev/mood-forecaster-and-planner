@@ -1,8 +1,9 @@
+import React from 'react';
 import { useSelector } from "react-redux";
 
 import './App.css';
-import { Form } from './features/forms/Form';
-import { Navbar } from './components/Navbar';
+import Form from './features/forms/Form';
+import Navbar from './components/Navbar';
 
 function App() {
   const formStatus = useSelector(state => state.forms.status);

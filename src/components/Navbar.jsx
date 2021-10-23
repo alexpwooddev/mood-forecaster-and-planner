@@ -14,7 +14,7 @@ import {
   setDate,
 } from "../features/forms/formsSlice";
 
-export const Navbar = () => {
+const Navbar = () => {
   const selectedDate = useSelector((state) =>
     parseISO(state.forms.selectedDate)
   );
@@ -50,31 +50,32 @@ export const Navbar = () => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <div className="navbar">
-      <div className="buttons-container">
-        <IconButton className="left-chevron" onClick={handleClick}>
-          <i className="chevron left-chevron">chevron_left</i>
-        </IconButton>
-        <IconButton className="todayButton" onClick={handleClick}>
-          Today
-        </IconButton>
-        <IconButton className="calendar-button" onClick={toggleShowDayPicker}>
-          <Event />
-        </IconButton>
-        {showDayPicker && (
-          <DayPicker onDayClick={handleDayClick} selectedDays={pickedDate} />
-        )}
-        <IconButton className="right-chevron" onClick={handleClick}>
-          <i className="chevron right-chevron">chevron_right</i>
-        </IconButton>
+        <div className="buttons-container">
+          <IconButton className="left-chevron" onClick={handleClick}>
+            <i className="chevron left-chevron">chevron_left</i>
+          </IconButton>
+          <IconButton className="todayButton" onClick={handleClick}>
+            Today
+          </IconButton>
+          <IconButton className="calendar-button" onClick={toggleShowDayPicker}>
+            <Event />
+          </IconButton>
+          {showDayPicker && (
+            <DayPicker onDayClick={handleDayClick} selectedDays={pickedDate} />
+          )}
+          <IconButton className="right-chevron" onClick={handleClick}>
+            <i className="chevron right-chevron">chevron_right</i>
+          </IconButton>
+        </div>
+        <p>
+          {selectedDay}, {localeDateString}
+        </p>
       </div>
-      <p>
-        {selectedDay}, {localeDateString}
-      </p>
-    </div>
-    <hr />
-    </React.Fragment>
-    
+      <hr />
+    </>
   );
 };
+
+export default Navbar;

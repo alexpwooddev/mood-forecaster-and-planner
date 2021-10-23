@@ -1,3 +1,5 @@
+/* eslint-disable */
+import React from 'react';
 import CachedIcon from "@material-ui/icons/Cached";
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import PropTypes from 'prop-types';
@@ -8,7 +10,7 @@ const SavingState = Object.freeze({
   SAVED: 2,
 });
 
-export const AutoSaveDisplay = ({ saving }) => {
+const AutoSaveDisplay = ({ saving }) => {
   let display;
   switch (saving) {
     case SavingState.NOT_SAVED:
@@ -44,3 +46,5 @@ export const AutoSaveDisplay = ({ saving }) => {
 AutoSaveDisplay.propTypes = {
   saving: PropTypes.number.isRequired
 }
+
+export default AutoSaveDisplay;

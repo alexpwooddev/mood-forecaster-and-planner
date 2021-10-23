@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { parseISO } from "date-fns";
 
 function getFormsFromLocalStorage() {

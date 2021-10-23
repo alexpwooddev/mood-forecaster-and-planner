@@ -6,27 +6,10 @@ import {
   addFormToLocalStorage,
 } from "../../dataAccess/dataHelper";
 
-const setSelectedForm = (state, newDate, newDateISO) => {
-  //setting selected Form for new date selection
-  const forms = state.forms;
-  let formForSelectedDate = forms.find(
-    (form) =>
-      parseISO(form.date).toLocaleDateString() ===
-      newDate.toLocaleDateString()
-  );
-  if (formForSelectedDate) {
-    state.selectedForm = formForSelectedDate;
-  } else {
-    let newForm = { ...defaultFormValues };
-    newForm.date = newDateISO;
-    state.selectedForm = newForm;
-  }
-}
-
 const defaultFormValues = {
   date: new Date().toISOString(),
-  mood: 10,
-  energy: 10,
+  mood: '10',
+  energy: '10',
   morningText: "",
   afternoonText: "",
   eveningText: "",
@@ -43,6 +26,23 @@ const initialState = {
   error: null,
 };
 
+const setSelectedForm = (state, newDate, newDateISO) => {
+  // setting selected Form for new date selection
+  const {forms} = state;
+  const formForSelectedDate = forms.find(
+    (form) =>
+      parseISO(form.date).toLocaleDateString() ===
+      newDate.toLocaleDateString()
+  );
+  if (formForSelectedDate) {
+    state.selectedForm = formForSelectedDate;
+  } else {
+    const newForm = { ...defaultFormValues };
+    newForm.date = newDateISO;
+    state.selectedForm = newForm;
+  }
+}
+
 export const saveForm = createAsyncThunk("forms/saveForm", async (newForm) => {
   await addFormToLocalStorage(newForm);
   return newForm;
@@ -50,8 +50,8 @@ export const saveForm = createAsyncThunk("forms/saveForm", async (newForm) => {
 
 export const fetchFormsOnStart = createAsyncThunk(
   "forms/fetchFormsOnStart",
-  async (_, { getState }) => {
-    let localForms = await getFormsFromLocalStorage();
+  async () => {
+    const localForms = await getFormsFromLocalStorage();
     return localForms;
   }
 );
@@ -86,22 +86,22 @@ export const formsSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchFormsOnStart.pending, (state, action) => {
+      .addCase(fetchFormsOnStart.pending, (state) => {
         state.status = "loading";
       })
       .addCase(fetchFormsOnStart.fulfilled, (state, action) => {
         state.status = "succeeded";
-        let localForms = action.payload;
+        const localForms = action.payload;
         state.forms = localForms;
 
-        let todayDate = new Date();
-        let formForToday = localForms.find(
+        const todayDate = new Date();
+        const formForToday = localForms.find(
           (form) =>
             parseISO(form.date).toLocaleDateString() ===
             todayDate.toLocaleDateString()
         );
 
-        state.selectedForm = formForToday ? formForToday : defaultFormValues;
+        state.selectedForm = formForToday || defaultFormValues;
       })
       .addCase(fetchFormsOnStart.rejected, (state, action) => {
         state.status = "failed";
@@ -109,17 +109,17 @@ export const formsSlice = createSlice({
       });
     builder.addCase(saveForm.fulfilled, (state, action) => {
       const newForm = action.payload;
-      let stateForms = state.forms;
+      const stateForms = state.forms;
 
-      let indexOfExistingFormForDate = stateForms
+      const indexOfExistingFormForDate = stateForms
         .map((stateForm) => parseISO(stateForm.date).toLocaleDateString())
         .indexOf(parseISO(newForm.date).toLocaleDateString());
 
       if (indexOfExistingFormForDate >= 0) {
-        //update form
+        // update form
         stateForms[indexOfExistingFormForDate] = newForm;
       } else {
-        //create form
+        // create form
         stateForms.push(newForm);
       }
     });

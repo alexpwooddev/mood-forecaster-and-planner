@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import Cloud from "@material-ui/icons/Cloud";
 import WbSunny from "@material-ui/icons/WbSunny";
 
-import { Autosave } from "../../components/Autosave";
-import { AutoSaveDisplay } from "../../components/AutosaveDisplay";
+import Autosave from "../../components/Autosave";
+import AutoSaveDisplay from "../../components/AutosaveDisplay";
 import "./Form.css";
 
 const SavingState = Object.freeze({
@@ -13,7 +13,7 @@ const SavingState = Object.freeze({
   SAVED: 2,
 });
 
-export const Form = () => {
+const Form = () => {
   const selectedForm = useSelector((state) => state.forms.selectedForm);
   const [form, setForm] = useState(selectedForm);
   const [autoSaveState, setAutoSaveState] = useState(SavingState.NOT_SAVED);
@@ -22,19 +22,20 @@ export const Form = () => {
     setForm(selectedForm);
   }, [selectedForm]);
 
+  const modifyAutoSaveState = (newState) => {
+    setAutoSaveState(newState);
+  };
+
   const handleChange = (e) => {
-    const name = e.target.name;
+    const {name} = e.target;
     const value = e.target.type === "checkbox" ? !form[name] : e.target.value;
     modifyAutoSaveState(SavingState.NOT_SAVED);
     setForm({ ...form, [name]: value });
   };
 
-  const modifyAutoSaveState = (newState) => {
-    setAutoSaveState(newState);
-  };
 
   return (
-    <React.Fragment>
+    <>
       <Autosave form={form} modifyAutoSaveState={modifyAutoSaveState} />
       <form className="form">
         <fieldset>
@@ -163,6 +164,8 @@ export const Form = () => {
         </fieldset>
         <AutoSaveDisplay saving={autoSaveState} />
       </form>
-    </React.Fragment>
+    </>
   );
 };
+
+export default Form;
