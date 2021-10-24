@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { render, screen } from '../../utils/test-utils';
 import Form from './Form';
 
 describe('Form', () => {
@@ -8,7 +9,7 @@ describe('Form', () => {
 
     it('renders the correct legend for fieldset 1', () => {
         render(<Form />);
-        const legend = screen.getByText(/Mood forecast/i);
+        const legend = screen.getByText(/Wellbeing forecast/i);
         expect(legend).toBeInTheDocument();
     });
 
@@ -64,5 +65,13 @@ describe('Form', () => {
         render(<Form />);
         const checkboxes = screen.getAllByRole('checkbox');
         expect(checkboxes).toHaveLength(3);
-    })
+    });
+
+    it('renders changes to text values from user', () => {
+        render(<Form />);
+        const morningTextArea = screen.getByLabelText(/morningText/i);
+        userEvent.type(morningTextArea, 'test text');
+        expect(morningTextArea).toHaveValue('test text');
+    });
+
 })

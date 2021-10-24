@@ -53,7 +53,7 @@ const Navbar = () => {
     <>
       <div className="navbar">
         <div className="buttons-container">
-          <IconButton className="left-chevron" onClick={handleClick}>
+          <IconButton className="left-chevron" onClick={handleClick} aria-label="left-chevron">
             <i className="chevron left-chevron">chevron_left</i>
           </IconButton>
           <IconButton className="todayButton" onClick={handleClick}>
@@ -65,7 +65,7 @@ const Navbar = () => {
           {showDayPicker && (
             <DayPicker onDayClick={handleDayClick} selectedDays={pickedDate} />
           )}
-          <IconButton className="right-chevron" onClick={handleClick}>
+          <IconButton className="right-chevron" onClick={handleClick} aria-label="right-chevron">
             <i className="chevron right-chevron">chevron_right</i>
           </IconButton>
         </div>

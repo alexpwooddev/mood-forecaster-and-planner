@@ -54,6 +54,7 @@ const Form = () => {
                 type="range"
                 id="mood"
                 name="mood"
+                aria-label="mood"
                 min="1"
                 max="10"
                 value={form.mood}
@@ -72,6 +73,7 @@ const Form = () => {
                 type="range"
                 id="energy"
                 name="energy"
+                aria-label="energy"
                 min="1"
                 max="10"
                 value={form.energy}
@@ -96,6 +98,7 @@ const Form = () => {
                   <textarea
                     id="morningText"
                     name="morningText"
+                    aria-label="morningText"
                     rows="5"
                     cols="33"
                     value={form.morningText}
@@ -108,6 +111,7 @@ const Form = () => {
                     className="regular-checkbox"
                     id="morningCheckbox"
                     name="morningCheckbox"
+                    aria-label="morningCheckbox"
                     checked={form.morningCheckbox}
                     onChange={handleChange}
                   />
@@ -119,6 +123,7 @@ const Form = () => {
                   <textarea
                     id="afternoonText"
                     name="afternoonText"
+                    aria-label="afternoonText"
                     rows="5"
                     cols="33"
                     value={form.afternoonText}
@@ -131,6 +136,7 @@ const Form = () => {
                     className="regular-checkbox"
                     id="afternoonCheckbox"
                     name="afternoonCheckbox"
+                    aria-label="afternoonCheckbox"
                     checked={form.afternoonCheckbox}
                     onChange={handleChange}
                   />
@@ -142,6 +148,7 @@ const Form = () => {
                   <textarea
                     id="eveningText"
                     name="eveningText"
+                    aria-label="eveningText"
                     rows="5"
                     cols="33"
                     value={form.eveningText}
@@ -154,6 +161,7 @@ const Form = () => {
                     className="regular-checkbox"
                     id="eveningCheckbox"
                     name="eveningCheckbox"
+                    aria-label="eveningCheckbox"
                     checked={form.eveningCheckbox}
                     onChange={handleChange}
                   />
