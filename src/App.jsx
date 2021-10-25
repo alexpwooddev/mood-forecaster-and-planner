@@ -1,25 +1,28 @@
 import React, { useEffect } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import './App.css';
 import Form from './features/forms/Form';
 import Navbar from './components/Navbar';
-import store from './app/store';
 import { fetchFormsOnStart } from "./features/forms/formsSlice";
 
 
 function App() {
   const formStatus = useSelector(state => state.forms.status);
+  const dispatch = useDispatch();
+  // console.log(formStatus);
 
   useEffect(() => {
-    store.dispatch(fetchFormsOnStart());
+    dispatch(fetchFormsOnStart());
   }, [])
 
-  let contentToRender = 'loading...';
+  let contentToRender;
   if (formStatus === 'loading') {
     contentToRender = 'loading...';
   } else if (formStatus === 'succeeded') {
     contentToRender = <Form />;
+  } else {
+    contentToRender = 'idle';
   }
 
   return (
