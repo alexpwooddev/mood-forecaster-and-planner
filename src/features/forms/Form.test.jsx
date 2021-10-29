@@ -37,19 +37,7 @@ describe('Form', () => {
         expect(energyRange).toBeInTheDocument();
     });
 
-    it('renders a table', () => {
-        render(<Form />);
-        const table = screen.getByRole('table');
-        expect(table).toBeInTheDocument();
-    });
-
-    it('renders a table with a head and body', () => {
-        render(<Form />);
-        const headAndBody = screen.getAllByRole('rowgroup');
-        expect(headAndBody).toHaveLength(2);
-    });
-
-    it('renders the correct table head content', () => {
+    it('renders the correct table heading', () => {
         render(<Form />);
         const tableHeadContent = screen.getByText(/Activities I will do today:/i);
         expect(tableHeadContent).toBeInTheDocument();
@@ -69,9 +57,19 @@ describe('Form', () => {
 
     it('renders changes to text values from user', () => {
         render(<Form />);
+        const userInputValue = 'test text'
         const morningTextArea = screen.getByLabelText(/morningText/i);
-        userEvent.type(morningTextArea, 'test text');
-        expect(morningTextArea).toHaveValue('test text');
+        userEvent.type(morningTextArea, userInputValue);
+        expect(morningTextArea).toHaveValue(userInputValue);
+    });
+
+    it('renders changes to checkbox values', () => {
+        render(<Form />);
+
+        const eveningCheckbox = screen.getByLabelText('eveningCheckbox');
+        userEvent.click(eveningCheckbox);
+
+        expect(eveningCheckbox.checked).toEqual(true);
     });
 
 })

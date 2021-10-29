@@ -56,10 +56,10 @@ const Navbar = () => {
           <IconButton className="left-chevron" onClick={handleClick} aria-label="left-chevron">
             <i className="chevron left-chevron">chevron_left</i>
           </IconButton>
-          <IconButton className="todayButton" onClick={handleClick}>
+          <IconButton className="todayButton" onClick={handleClick} aria-label="today-button">
             Today
           </IconButton>
-          <IconButton className="calendar-button" onClick={toggleShowDayPicker}>
+          <IconButton className="calendar-button" onClick={toggleShowDayPicker} aria-label="calendar-button">
             <Event />
           </IconButton>
           {showDayPicker && (

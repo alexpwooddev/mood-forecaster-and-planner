@@ -6,6 +6,8 @@
   --white: #ffff;
   --margin-s: 10px;
   --margin-m: 20px;
+  --padding-s: var(--margin-s);
+  --padding-m: var(--margin-m);
 }
 
 body {

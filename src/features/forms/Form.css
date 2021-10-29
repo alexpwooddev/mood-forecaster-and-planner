@@ -1,9 +1,34 @@
 .form {
-  padding: 20px;
+  padding: var(--padding-s);
 }
 
-.form table {
-  margin: auto;
+@media (min-width: 768px) {
+  .form {
+    padding: var(--padding-m);
+  }
+}
+
+.form h2 {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.form h3 {
+  font-weight: bold;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form .time-label {
+  margin-right: var(--margin-s);
+}
+
+@media (min-width: 768px) {
+  .form h3 {
+    font-size: 1rem;
+  }
 }
 
 .form fieldset {
@@ -12,23 +37,35 @@
   margin-bottom: var(--margin-m);
 }
 
+.form .forecast-fieldset-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 5fr 0.5fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+@media (min-width: 768px) {
+  .form .forecast-fieldset-grid {
+    width: 70%;
+    margin: auto;
+  }
+}
+
+.form .cloud-icon {
+  grid-column: 2 / 3;
+}
+
+.form .sun-icon {
+  grid-column: 4 / 5;
+}
+
 .form legend {
   margin-bottom: var(--margin-s);
 }
 
-.form .label-wrapper {
-  display: inline-block;
-  width: 20%;
-}
-
-.form .weather-icons-wrapper {
-  display: flex;
-  justify-content: space-between;
-}
-
-.form .range-labelAndInput {
-  display: flex;
-  justify-content: space-evenly;
+.form label {
+  justify-self: end;
 }
 
 .form .range-input {
@@ -40,8 +77,27 @@
   margin: 0 4px;
 }
 
+.form .activities-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr 2fr;
+}
+
+.form .activities-title {
+  align-self: end;
+}
+
+.form .activities-willDo-title {
+  grid-column: 2 / 3;
+  padding: 0 10px 0 10px;
+}
+
+.form .activities-completed-title {
+  grid-column: 3 / 4;
+}
+
 input[type="range"] {
-  width: 80%;
+  width: 100%;
 }
 
 textarea {
@@ -53,12 +109,22 @@ textarea {
   -webkit-appearance: none;
   background-color: #fafafa;
   border: 1px solid #cacece;
+  width: 35px;
+  height: 35px;
+  margin: auto;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
     inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
   padding: 14px;
   border-radius: 3px;
   display: inline-block;
   position: relative;
+}
+
+@media (min-width: 768px) {
+  .regular-checkbox {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 .regular-checkbox:active,
@@ -78,29 +144,35 @@ textarea {
 
 .regular-checkbox:checked:after {
   content: "\2714";
-  font-size: 16px;
+  font-size: 26px;
   position: absolute;
-  top: 3px;
-  left: 8px;
+  left: 7px;
   color: var(--magenta);
+  bottom: 0.5px;
 }
 
+@media (min-width: 768px) {
+  .regular-checkbox:checked:after {
+    font-size: 32px;
+    top: 2px;
+    left: 12px;
+  }
+}
 
-
-input[type=range]{
+input[type="range"] {
   -webkit-appearance: none;
   border-radius: 2px;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
-  width: 80%;
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
   height: 5px;
   background: #ddd;
   border: none;
   border-radius: 3px;
 }
 
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: none;
   height: 16px;
@@ -110,31 +182,31 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: -4px;
 }
 
-input[type=range]:focus {
+input[type="range"]:focus {
   outline: none;
 }
 
-input[type=range]:focus::-webkit-slider-runnable-track {
+input[type="range"]:focus::-webkit-slider-runnable-track {
   background: #ccc;
 }
 
-input[type=range]{
+input[type="range"] {
   /* fix for FF unable to apply focus style bug  */
-  border: 1px solid white; 
+  border: 1px solid white;
 
   /*required for proper track sizing in FF*/
-  width: 80%;
+  width: 100%;
 }
 
-input[type=range]::-moz-range-track {
-  width: 80%;
+input[type="range"]::-moz-range-track {
+  width: 100%;
   height: 5px;
   background: #ddd;
   border: none;
   border-radius: 3px;
 }
 
-input[type=range]::-moz-range-thumb {
+input[type="range"]::-moz-range-thumb {
   border: none;
   height: 16px;
   width: 16px;
@@ -143,11 +215,11 @@ input[type=range]::-moz-range-thumb {
 }
 
 /*hide the outline behind the border*/
-input[type=range]:-moz-focusring{
+input[type="range"]:-moz-focusring {
   outline: 1px solid white;
   outline-offset: -1px;
 }
 
-input[type=range]:focus::-moz-range-track {
+input[type="range"]:focus::-moz-range-track {
   background: #ccc;
 }

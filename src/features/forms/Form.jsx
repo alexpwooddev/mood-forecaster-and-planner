@@ -27,148 +27,117 @@ const Form = () => {
   };
 
   const handleChange = (e) => {
-    const {name} = e.target;
+    const { name } = e.target;
     const value = e.target.type === "checkbox" ? !form[name] : e.target.value;
     modifyAutoSaveState(SavingState.NOT_SAVED);
     setForm({ ...form, [name]: value });
   };
-
 
   return (
     <>
       <Autosave form={form} modifyAutoSaveState={modifyAutoSaveState} />
       <form className="form">
         <fieldset>
-          <legend><span className="bold-span">Wellbeing Forecast:</span></legend>
-          <div className="range-container">
-            <div className="label-wrapper">
-              <label htmlFor="mood">MOOD:</label>
-            </div>
-            <div className="range-input">
-              <div className="weather-icons-wrapper">
-                <Cloud />
-                <WbSunny />
-              </div>
-              <span className="range-number-label">1</span>
-              <input
-                type="range"
-                id="mood"
-                name="mood"
-                aria-label="mood"
-                min="1"
-                max="10"
-                value={form.mood}
-                onChange={handleChange}
-              />
-              <span className="range-number-label">10</span>
-            </div>
-          </div>
-          <div className="range-container">
-            <div className="label-wrapper">
-              <label htmlFor="energy">ENERGY:</label>
-            </div>
-            <div className="range-input">
-              <span className="range-number-label">1</span>
-              <input
-                type="range"
-                id="energy"
-                name="energy"
-                aria-label="energy"
-                min="1"
-                max="10"
-                value={form.energy}
-                onChange={handleChange}
-              />
-              <span className="range-number-label">10</span>
-            </div>
+          <legend>
+            <h2>Wellbeing Forecast:</h2>
+          </legend>
+          <div className="forecast-fieldset-grid">
+            <Cloud className="cloud-icon" />
+            <WbSunny className="sun-icon" />
+            <label htmlFor="mood">MOOD:</label>
+            <span className="range-number-label">1</span>
+            <input
+              type="range"
+              id="mood"
+              name="mood"
+              aria-label="mood"
+              min="1"
+              max="10"
+              value={form.mood}
+              onChange={handleChange}
+            />
+            <span className="range-number-label">10</span>
+            <label htmlFor="energy">ENERGY:</label>
+            <span className="range-number-label">1</span>
+            <input
+              type="range"
+              id="energy"
+              name="energy"
+              aria-label="energy"
+              min="1"
+              max="10"
+              value={form.energy}
+              onChange={handleChange}
+            />
+            <span className="range-number-label">10</span>
           </div>
         </fieldset>
         <fieldset>
-          <table>
-            <thead>
-              <tr>
-                <th colSpan="2">Activities I will do today:</th>
-                <th>At least one completed</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Morning</td>
-                <td>
-                  <textarea
-                    id="morningText"
-                    name="morningText"
-                    aria-label="morningText"
-                    rows="5"
-                    cols="33"
-                    value={form.morningText}
-                    onChange={handleChange}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="checkbox"
-                    className="regular-checkbox"
-                    id="morningCheckbox"
-                    name="morningCheckbox"
-                    aria-label="morningCheckbox"
-                    checked={form.morningCheckbox}
-                    onChange={handleChange}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Afternoon</td>
-                <td>
-                  <textarea
-                    id="afternoonText"
-                    name="afternoonText"
-                    aria-label="afternoonText"
-                    rows="5"
-                    cols="33"
-                    value={form.afternoonText}
-                    onChange={handleChange}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="checkbox"
-                    className="regular-checkbox"
-                    id="afternoonCheckbox"
-                    name="afternoonCheckbox"
-                    aria-label="afternoonCheckbox"
-                    checked={form.afternoonCheckbox}
-                    onChange={handleChange}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Evening</td>
-                <td>
-                  <textarea
-                    id="eveningText"
-                    name="eveningText"
-                    aria-label="eveningText"
-                    rows="5"
-                    cols="33"
-                    value={form.eveningText}
-                    onChange={handleChange}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="checkbox"
-                    className="regular-checkbox"
-                    id="eveningCheckbox"
-                    name="eveningCheckbox"
-                    aria-label="eveningCheckbox"
-                    checked={form.eveningCheckbox}
-                    onChange={handleChange}
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="activities-grid">
+            <h3 className="activities-title activities-willDo-title">
+              Activities I will do today:
+            </h3>
+            <h3 className="activities-title activities-completed-title">
+              At least one completed:
+            </h3>
+            <h3 className="time-label">Morning</h3>
+            <textarea
+              id="morningText"
+              name="morningText"
+              aria-label="morningText"
+              rows="5"
+              cols="33"
+              value={form.morningText}
+              onChange={handleChange}
+            />
+            <input
+              type="checkbox"
+              className="regular-checkbox"
+              id="morningCheckbox"
+              name="morningCheckbox"
+              aria-label="morningCheckbox"
+              checked={form.morningCheckbox}
+              onChange={handleChange}
+            />
+            <h3 className="time-label">Afternoon</h3>
+            <textarea
+              id="afternoonText"
+              name="afternoonText"
+              aria-label="afternoonText"
+              rows="5"
+              cols="33"
+              value={form.afternoonText}
+              onChange={handleChange}
+            />
+            <input
+              type="checkbox"
+              className="regular-checkbox"
+              id="afternoonCheckbox"
+              name="afternoonCheckbox"
+              aria-label="afternoonCheckbox"
+              checked={form.afternoonCheckbox}
+              onChange={handleChange}
+            />
+            <h3 className="time-label">Evening</h3>
+            <textarea
+              id="eveningText"
+              name="eveningText"
+              aria-label="eveningText"
+              rows="5"
+              cols="33"
+              value={form.eveningText}
+              onChange={handleChange}
+            />
+            <input
+              type="checkbox"
+              className="regular-checkbox"
+              id="eveningCheckbox"
+              name="eveningCheckbox"
+              aria-label="eveningCheckbox"
+              checked={form.eveningCheckbox}
+              onChange={handleChange}
+            />
+          </div>
         </fieldset>
         <AutoSaveDisplay saving={autoSaveState} />
       </form>

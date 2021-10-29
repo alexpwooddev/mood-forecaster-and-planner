@@ -2,11 +2,20 @@
   text-align: center;
   background-color: var(--blue-steel);
   color: var(--white);
-  width: 80%;
+  width: 90%;
   margin: auto;
   border-radius: 10px;
-  padding: 20px;
+  padding: var(--padding-s);
+  padding-top: var(--padding-m);
+  padding-bottom: var(--padding-m);
   box-shadow: 0px 2px 4px grey;
+}
+
+@media (min-width: 768px) {
+  .App {
+    width: 85%;
+    padding: var(--padding-m);
+  }
 }
 
 .App button {
@@ -16,9 +25,5 @@
 
 .App hr {
   border: 1px solid var(--white);
-}
-
-.App .bold-span {
-  font-weight: bold;
 }
 
