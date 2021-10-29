@@ -1,4 +1,4 @@
-/* eslint-disable no-shadow */ 
+/* eslint-disable no-shadow */
 import { useDispatch } from "react-redux";
 import { useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
@@ -36,7 +36,6 @@ const Autosave = ({ form, modifyAutoSaveState }) => {
     debouncedSave(form);
   }, [form, debouncedSave]);
 
-
   return null;
 };
 
@@ -48,9 +47,9 @@ Autosave.propTypes = {
     morningText: PropTypes.string,
     afternoonText: PropTypes.string,
     eveningText: PropTypes.string,
-    morningCheckbox: PropTypes.boolean,
-    afternoonCheckbox: PropTypes.boolean,
-    eveningCheckbox: PropTypes.boolean,
+    morningCheckbox: PropTypes.bool,
+    afternoonCheckbox: PropTypes.bool,
+    eveningCheckbox: PropTypes.bool,
   }),
   modifyAutoSaveState: PropTypes.func.isRequired,
 };
