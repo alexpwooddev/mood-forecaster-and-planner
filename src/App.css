@@ -4,6 +4,8 @@
   color: var(--white);
   width: 90%;
   margin: auto;
+  margin-top: var(--margin-s);
+  margin-bottom: var(--margin-s);
   border-radius: 10px;
   padding: var(--padding-s);
   padding-top: var(--padding-m);
@@ -21,9 +23,16 @@
 .App button {
   background-color: var(--magenta);
   color: var(--white);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.App button:not(:disabled):not(.disabled):active{
+  transform: translateY(1px);
 }
 
 .App hr {
   border: 1px solid var(--white);
+  margin-left: var(--margin-s);
+  margin-right: var(--margin-s);
 }
 

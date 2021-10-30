@@ -41,11 +41,11 @@ const Form = () => {
 
     if (e.target.type === "range" && e.target.value <= 5) {
       if (e.target.id === "mood") {
-        changeModalTitle(`It's looking foggy today`);
+        changeModalTitle(`It's looking foggy`);
         changeModalMessage(`Is there anything nice you can do for yourself today?`);
         show();
       } else {
-        changeModalTitle(`It's looking foggy today`);
+        changeModalTitle(`It's looking foggy`);
         changeModalMessage(`Are there any activities you can delegate or get help with?`);
         show();
       }

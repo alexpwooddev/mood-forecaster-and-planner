@@ -1,30 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
+import Button from "@material-ui/core/Button";
 
 import "./Modal.css";
 
-const Modal = ({ title, message, hide }) => ReactDOM.createPortal(
-  <div className="modal">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title">{title}</h5>
+const Modal = ({ title, message, hide }) =>
+  ReactDOM.createPortal(
+    <div className="modal">
+      <div className="modal-content">
+        <h2 className="modal-title">{title}</h2>
+        <p className="modal-body">{message}</p>
+        <Button onClick={hide}>
+          Close
+        </Button>
       </div>
-      <div className="modal-body">{message}</div>
-      <div className="modal-footer">
-        <button
-          id="modal-close-button"
-          type="button"
-          className="btn btn-secondary"
-          onClick={hide}
-        >
-          <p>Close</p>
-        </button>
-      </div>
-    </div>
-  </div>,
-  document.body
-);
+    </div>,
+    document.body
+  );
 
 Modal.propTypes = {
   title: PropTypes.string.isRequired,

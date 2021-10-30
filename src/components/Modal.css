@@ -13,7 +13,7 @@
 }
 
 .modal .modal-content {
-  width: 400px;
+  width: 250px;
   max-width: 75vw;
   max-height: calc(100vh - 1rem);
   background: var(--white);
@@ -25,81 +25,31 @@
   flex-direction: column;
 }
 
-.modal .hideModal {
-  z-index: -1;
-  opacity: 0;
-  animation: hide 0.25s;
-}
-@keyframes hide {
-  from {
-    z-index: 2;
-    opacity: 1;
-  }
-  to {
-    z-index: -1;
-    opacity: 0;
-  }
-}
-.modal .showModal {
-  opacity: 1;
-  z-index: 2;
-  animation: show 0.3s;
-}
-@keyframes show {
-  from {
-    opacity: 0;
-    z-index: -1;
-  }
-  to {
-    opacity: 1;
-    z-index: 2;
+@media (min-width: 768px) {
+  .modal .modal-content {
+    width: 400px;
   }
 }
 
-.modal .modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin: var(--margin-s);
-}
 .modal .modal-title {
   line-height: 1.5;
   margin: 0;
 }
 
-.modal .modal-body fieldset {
-  border: none;
-}
-
-.modal .modal-body {
-  position: relative;
-  margin: var(--margin-s);
-  text-align: center;
-}
-
-.modal .modal-footer {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  width: 100%;
-  padding: 1rem;
-}
-
-#promise-div input {
-  padding-left: 2px;
-  padding-right: 2px;
-  margin-left: 2px;
-  margin-right: 2px;
-}
-
-.modal h5 {
+.modal h2 {
   font-weight: 700;
   font-size: 1.2rem;
+  margin: var(--margin-m);
 }
 
 .modal p {
-  font-size: 1rem;
+  font-size: 0.8rem;
+  margin: var(--margin-m);
+  text-align: center;
+}
+
+.modal button {
+  font-size: 0.6rem;
 }
 
 .modal label {
@@ -111,9 +61,13 @@
   background-color: var(--magenta);
   color: var(--white);
   border-radius: 10px;
-  box-shadow: 0px 2px 4px grey;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .modal button:hover {
-    background-color: var(--magenta-light);
-  }
+  background-color: var(--magenta-light);
+}
+
+.modal button:not(:disabled):not(.disabled):active{
+  transform: translateY(1px);
+}

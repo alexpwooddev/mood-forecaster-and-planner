@@ -4,7 +4,6 @@ import { parseISO } from "date-fns";
 import DayPicker from "react-day-picker";
 import Event from "@material-ui/icons/EventAvailableOutlined";
 import IconButton from "@material-ui/core/IconButton";
-
 import "react-day-picker/lib/style.css";
 
 import "./Navbar.css";
@@ -13,6 +12,7 @@ import {
   decrementDate,
   setDate,
 } from "../features/forms/formsSlice";
+
 
 const Navbar = () => {
   const selectedDate = useSelector((state) =>

@@ -4,6 +4,7 @@
   --magenta-light: #bd36af;
   --blue-steel: #1e78bb;
   --white: #ffff;
+  --margin-xs: 5px;
   --margin-s: 10px;
   --margin-m: 20px;
   --padding-s: var(--margin-s);
