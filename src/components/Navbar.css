@@ -30,6 +30,7 @@
   font-size: 16px;
   background-color: var(--magenta);
   height: 28px;
+  width: 47px;
 }
 
 .navbar .MuiIconButton-root:hover {
@@ -45,6 +46,13 @@
   border: 1px solid var(--purple);
   color: var(--purple);
   z-index: 10;
+  left: 10px;
+}
+
+@media (min-width: 768px) {
+  .navbar .DayPicker-wrapper {
+    left: unset;
+  }
 }
 
 .navbar .DayPicker-NavButton {
@@ -53,7 +61,6 @@
 
 
 .navbar .calendar-button {
-  /* width: 25px; */
   height: auto;
 }
 
