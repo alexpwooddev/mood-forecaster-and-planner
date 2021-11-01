@@ -145,11 +145,11 @@ textarea {
 
 .regular-checkbox:checked:after {
   content: "\2714";
-  font-size: 26px;
+  font-size: 23px;
   position: absolute;
-  left: 7px;
+  left: 8px;
   color: var(--magenta);
-  bottom: 0.5px;
+  bottom: 2px;
 }
 
 @media (min-width: 768px) {

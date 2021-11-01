@@ -47,6 +47,7 @@
   color: var(--purple);
   z-index: 10;
   left: 10px;
+  top: 66px;
 }
 
 @media (min-width: 768px) {
