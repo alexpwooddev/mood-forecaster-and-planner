@@ -55,13 +55,6 @@ const Navbar = () => {
     <>
       <NavbarContainer>
         <ButtonsContainer>
-          {/* <IconButton
-            className="left-chevron"
-            onClick={handleClick}
-            aria-label="left-chevron"
-          >
-            <i className="chevron left-chevron">chevron_left</i>
-          </IconButton> */}
           <ChevronLeft
             className="left-chevron"
             onClick={handleClick}
@@ -84,13 +77,6 @@ const Navbar = () => {
           {showDayPicker && (
             <DayPicker onDayClick={handleDayClick} selectedDays={pickedDate} />
           )}
-          {/* <IconButton
-            className="right-chevron"
-            onClick={handleClick}
-            aria-label="right-chevron"
-          >
-            <i className="chevron right-chevron">chevron_right</i>
-          </IconButton> */}
           <ChevronRight
             className="right-chevron"
             onClick={handleClick}
@@ -101,7 +87,7 @@ const Navbar = () => {
           {selectedDay}, {localeDateString}
         </StyledP>
       </NavbarContainer>
-      <hr />
+      <Hr />
     </>
   );
 };
@@ -124,19 +110,8 @@ const StyledP = styled.p`
   margin: 0;
 `;
 
-// const Chevron = styled.i`
-//   font-family: "Material Icons";
-//   font-style: normal;
-//   display: inline-block;
-//   vertical-align: middle;
-//   line-height: 1;
-//   text-transform: none;
-//   letter-spacing: normal;
-//   word-wrap: normal;
-//   white-space: nowrap;
-//   direction: ltr;
-//   -webkit-font-smoothing: antialiased;
-//   text-rendering: optimizeLegibility;
-//   -moz-osx-font-smoothing: grayscale;
-//   font-feature-settings: "liga";
-// `;
+const Hr = styled.hr`
+  border: 1px solid var(--white);
+  margin-left: var(--margin-s);
+  margin-right: var(--margin-s);
+`;

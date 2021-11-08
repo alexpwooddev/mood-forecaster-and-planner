@@ -1,7 +1,3 @@
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
-
-/* .material-icons.md-18 { font-size: 18px; } */
-
 .DayPicker-wrapper {
   position: absolute;
   background-color: var(--white);
@@ -22,36 +18,6 @@
 .DayPicker-NavButton {
   color: var(--magenta);
 }
-/* 
-
-.calendar-button {
-  height: auto;
-}
-
-.calendar-icon {
-  width: 100%;
-} */
-
-/* .chevron {
-  font-family: "Material Icons";
-  font-style: normal;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: "liga";
-} */
-
-
-
-
 
 .DayPicker-Weekday {
   display: table-cell;
