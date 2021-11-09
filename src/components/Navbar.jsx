@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { parseISO } from "date-fns";
-import DayPicker from "react-day-picker";
-import Event from "@material-ui/icons/EventAvailableOutlined";
-import styled from "styled-components/macro";
-import IconButton from "./IconButton";
-import ChevronRight from "./ChevronRight";
-import ChevronLeft from "./ChevronLeft";
-import "react-day-picker/lib/style.css";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { parseISO } from 'date-fns';
+import DayPicker from 'react-day-picker';
+import Event from '@material-ui/icons/EventAvailableOutlined';
+import styled from 'styled-components/macro';
+import IconButton from './IconButton';
+import ChevronRight from './ChevronRight';
+import ChevronLeft from './ChevronLeft';
+import 'react-day-picker/lib/style.css';
 
-import "./Navbar.css";
+import './Daypicker.css';
 import {
   incrementDate,
   decrementDate,
   setDate,
-} from "../features/forms/formsSlice";
+} from '../features/forms/formsSlice';
 
 const Navbar = () => {
   const selectedDate = useSelector((state) =>

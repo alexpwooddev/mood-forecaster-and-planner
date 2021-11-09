@@ -21,6 +21,7 @@ const Autosave = ({ form, modifyAutoSaveState }) => {
       await dispatch(saveForm(form));
       modifyAutoSaveState(SavingState.SAVED);
     } catch (err) {
+      // eslint-disable-next-line
       console.error("Failed to save the form: ", err);
     }
   };

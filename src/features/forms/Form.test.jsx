@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen } from "../../utils/test-utils";
+import { render, screen, fireEvent } from "../../utils/test-utils";
 import Form from "./Form";
 
 describe("Form", () => {
@@ -93,5 +93,17 @@ describe("Form", () => {
     expect(savedDisplay).toBeInTheDocument();
   });
 
+  it("opens a modal when a range less than 5 is selected and closes it again when clicked", () => {
+    render(<Form />);
 
+    const moodRange = screen.getByRole("slider", { name: /mood/i });
+    fireEvent.change(moodRange, { target: { value: 3 } });
+
+    expect(screen.getByText(/It's looking foggy/i)).toBeInTheDocument();
+
+    const closeButton = screen.getByRole("button");
+    userEvent.click(closeButton);
+
+    expect(screen.queryByText(/It's looking foggy/i)).not.toBeInTheDocument();
+  });
 });

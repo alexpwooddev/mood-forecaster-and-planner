@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Cloud from "@material-ui/icons/Cloud";
-import WbSunny from "@material-ui/icons/WbSunny";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Cloud from '@material-ui/icons/Cloud';
+import WbSunny from '@material-ui/icons/WbSunny';
 
 function Forecast({ form, handleChange }) {
   return (

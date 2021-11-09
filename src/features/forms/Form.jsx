@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-import Autosave from "../../components/Autosave";
-import AutoSaveDisplay from "../../components/AutosaveDisplay";
-import useModal from "../../customHooks/useModal";
-import Forecast from "./Forecast";
-import Activities from "./Activities";
-import Modal from "../../components/Modal";
-import "./Form.css";
+import Autosave from '../../components/Autosave';
+import AutoSaveDisplay from '../../components/AutosaveDisplay';
+import useModal from '../../customHooks/useModal';
+import Forecast from './Forecast';
+import Activities from './Activities';
+import Modal from '../../components/Modal';
+import './Form.css';
 
 const SavingState = Object.freeze({
   NOT_SAVED: 0,

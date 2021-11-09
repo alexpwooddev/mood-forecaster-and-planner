@@ -1,9 +1,9 @@
-/* eslint-disable */
-import React from "react";
-import CachedIcon from "@material-ui/icons/Cached";
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import PropTypes from "prop-types";
-import styled from "styled-components/macro";
+
+import React from 'react';
+import CachedIcon from '@material-ui/icons/Cached';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import PropTypes from 'prop-types';
+import styled from 'styled-components/macro';
 
 
 const SavingState = Object.freeze({

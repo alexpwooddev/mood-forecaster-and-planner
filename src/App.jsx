@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import styled from "styled-components/macro";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components/macro';
 
-import Form from "./features/forms/Form";
-import Navbar from "./components/Navbar";
-import { fetchFormsOnStart } from "./features/forms/formsSlice";
+import Form from './features/forms/Form';
+import Navbar from './components/Navbar';
+import { fetchFormsOnStart } from './features/forms/formsSlice';
 
 function App() {
   const formStatus = useSelector((state) => state.forms.status);

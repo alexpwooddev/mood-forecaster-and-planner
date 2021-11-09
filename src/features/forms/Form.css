@@ -119,6 +119,7 @@ textarea {
   border-radius: 3px;
   display: inline-block;
   position: relative;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {
@@ -163,6 +164,7 @@ textarea {
 input[type="range"] {
   -webkit-appearance: none;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
