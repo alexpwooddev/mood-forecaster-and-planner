@@ -4,7 +4,7 @@
 ## Description
 Wellbeing tool created with React, Redux, Styled Components, Material UI, React Testing Library, and deployed on Google Firebase.
 
-<img width="870" alt="image" src="https://user-images.githubusercontent.com/65205646/187795224-bf2f29ea-e8cf-4ba4-a7be-f8f777d6d687.png">
+<img width="570" alt="image" src="https://user-images.githubusercontent.com/65205646/187795960-b69efd60-5927-4cf8-80cf-f113e2a94468.png">
 
 ## Features
 - Rate mood & energy levels and plan activities for particular days
