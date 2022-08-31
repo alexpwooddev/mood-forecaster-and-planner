@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import Autosave from '../../components/Autosave';
 import AutoSaveDisplay from '../../components/AutosaveDisplay';
 import useModal from '../../customHooks/useModal';
+import useAutosave from "../../customHooks/useAutosave";
 import Forecast from './Forecast';
 import Activities from './Activities';
 import Modal from '../../components/Modal';
@@ -23,17 +23,16 @@ const Form = () => {
     modalMessage,
     { show, hide, changeModalMessage, changeModalTitle },
   ] = useModal();
-
   const [form, setForm] = useState(selectedForm);
   const [autoSaveState, setAutoSaveState] = useState(SavingState.NOT_SAVED);
+  const modifyAutoSaveState = (newState) => {
+    setAutoSaveState(newState);
+  };
+  useAutosave(form, modifyAutoSaveState);
 
   useEffect(() => {
     setForm(selectedForm);
   }, [selectedForm]);
-
-  const modifyAutoSaveState = (newState) => {
-    setAutoSaveState(newState);
-  };
 
   const handleChange = (e) => {
     const { name } = e.target;
@@ -57,7 +56,6 @@ const Form = () => {
 
   return (
     <>
-      <Autosave form={form} modifyAutoSaveState={modifyAutoSaveState} />
       <form className="form">
         <Forecast form={form} handleChange={handleChange} />
         <Activities form={form} handleChange={handleChange} />
