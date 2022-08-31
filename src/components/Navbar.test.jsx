@@ -7,10 +7,10 @@ describe("Navbar", () => {
         render(<Navbar />);
     });
 
-    it("renders 4 buttons", () => {
+    it("renders 2 buttons", () => {
         render(<Navbar />);
         const buttons = screen.getAllByRole("button");
-        expect(buttons).toHaveLength(4);
+        expect(buttons).toHaveLength(2);
     });
 
     it("navigates forwards one day when next date is clicked", () => {

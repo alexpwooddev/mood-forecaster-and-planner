@@ -1,7 +1,6 @@
 /* eslint-disable no-shadow */
 import { useDispatch } from "react-redux";
 import { useCallback, useEffect } from "react";
-import PropTypes from "prop-types";
 
 import { saveForm } from "../features/forms/formsSlice";
 import debounce from "../utils/debounce";
@@ -12,7 +11,7 @@ const SavingState = Object.freeze({
   SAVED: 2,
 });
 
-const Autosave = ({ form, modifyAutoSaveState }) => {
+const useAutosave = (form, modifyAutoSaveState) => {
   const dispatch = useDispatch();
 
   const save = async (form) => {
@@ -40,19 +39,4 @@ const Autosave = ({ form, modifyAutoSaveState }) => {
   return null;
 };
 
-Autosave.propTypes = {
-  form: PropTypes.shape({
-    date: PropTypes.string,
-    mood: PropTypes.string,
-    energy: PropTypes.string,
-    morningText: PropTypes.string,
-    afternoonText: PropTypes.string,
-    eveningText: PropTypes.string,
-    morningCheckbox: PropTypes.bool,
-    afternoonCheckbox: PropTypes.bool,
-    eveningCheckbox: PropTypes.bool,
-  }),
-  modifyAutoSaveState: PropTypes.func.isRequired,
-};
-
-export default Autosave;
+export default useAutosave;

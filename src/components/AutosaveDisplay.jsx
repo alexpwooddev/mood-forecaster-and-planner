@@ -1,10 +1,10 @@
-/* eslint-disable */
+
 import React from 'react';
-import CachedIcon from "@material-ui/icons/Cached";
+import CachedIcon from '@material-ui/icons/Cached';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import PropTypes from 'prop-types';
+import styled from 'styled-components/macro';
 
-import './AutosaveDisplay.css';
 
 const SavingState = Object.freeze({
   NOT_SAVED: 0,
@@ -18,7 +18,7 @@ const AutoSaveDisplay = ({ saving }) => {
     case SavingState.NOT_SAVED:
       display = (
         <div>
-          <p>Saving</p>
+          <StyledP>Saving</StyledP>
           <CachedIcon />
         </div>
       );
@@ -26,7 +26,7 @@ const AutoSaveDisplay = ({ saving }) => {
     case SavingState.SAVING:
       display = (
         <div>
-          <p>Saving</p>
+          <StyledP>Saving</StyledP>
           <CachedIcon />
         </div>
       );
@@ -34,7 +34,7 @@ const AutoSaveDisplay = ({ saving }) => {
     case SavingState.SAVED:
       display = (
         <div>
-          <p>Saved</p>
+          <StyledP>Saved</StyledP>
           <CheckCircleOutlineIcon />
         </div>
       );
@@ -42,11 +42,20 @@ const AutoSaveDisplay = ({ saving }) => {
     default:
       display = <br />;
   }
-  return <div className="auto-save-display">{display}</div>;
+  return <StyledAutoSaveDisplay>{display}</StyledAutoSaveDisplay>;
 };
 
 AutoSaveDisplay.propTypes = {
-  saving: PropTypes.number.isRequired
-}
+  saving: PropTypes.number.isRequired,
+};
 
 export default AutoSaveDisplay;
+
+const StyledAutoSaveDisplay = styled.div`
+  margin: var(--margin-m);
+  margin-bottom: 0;
+`;
+
+const StyledP = styled.p`
+  margin-bottom: var(--margin-xs);
+`;
